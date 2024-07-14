@@ -23,7 +23,7 @@ const SessionSchema = new Schema(
         },
         user: {
           type: Schema.Types.ObjectId,
-          ref: "users",
+          ref: "athletes",
         },
       },
     ],
@@ -34,7 +34,7 @@ const SessionSchema = new Schema(
         },
         user: {
           type: Schema.Types.ObjectId,
-          ref: "users",
+          ref: "athletes",
         },
       },
     ],
@@ -43,10 +43,22 @@ const SessionSchema = new Schema(
       enum: ["Heritage", "Long Lake", "David Lorenze"],
     },
     exercises: [],
-    primary_function_focus: {},
-    secondary_function_focus: {},
-    metric_3: {},
-    metric_4: {},
+    primary_function_focus: {
+      type: Schema.Types.ObjectId,
+      ref: "function_metrics",
+    },
+    secondary_function_focus: {
+      type: Schema.Types.ObjectId,
+      ref: "function_metrics",
+    },
+    metric_3: {
+      type: Schema.Types.ObjectId,
+      ref: "function_metrics",
+    },
+    metric_4: {
+      type: Schema.Types.ObjectId,
+      ref: "function_metrics",
+    },
     session_type: {
       type: String,
       enum: ["Recovery", "In-Season", "Pre-Season", "Pre-Game", "Camp"],
