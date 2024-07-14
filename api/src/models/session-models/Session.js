@@ -12,11 +12,11 @@ const SessionSchema = new Schema(
     time_end: {
       type: Date,
     },
-    trainer: {
+    coach: {
       type: Schema.Types.ObjectId,
       ref: "users",
     },
-    athletes: [
+    scheduled_athletes: [
       {
         name: {
           type: String,
@@ -27,6 +27,35 @@ const SessionSchema = new Schema(
         },
       },
     ],
+    attendance: [
+      {
+        name: {
+          type: String,
+        },
+        user: {
+          type: Schema.Types.ObjectId,
+          ref: "users",
+        },
+      },
+    ],
+    location: {
+      type: String,
+      enum: ["Heritage", "Long Lake", "David Lorenze"],
+    },
+    exercises: [],
+    primary_function_focus: {},
+    secondary_function_focus: {},
+    metric_3: {},
+    metric_4: {},
+    session_type: {
+      type: String,
+      enum: ["Recovery", "In-Season", "Pre-Season", "Pre-Game", "Camp"],
+    },
+    session_status: {
+      type: String,
+      enum: ["Scheduled", "Canceled", "Completed"],
+      default: "Scheduled",
+    },
   },
   {
     timestamps: true,

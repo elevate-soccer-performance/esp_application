@@ -35,9 +35,13 @@ const UserSchema = new Schema(
       type: Boolean,
       default: false,
     },
-    type: {
+    role: {
       type: String,
-      enum: ["Trainer", "Athlete", "Parent"],
+      enum: ["Coach", "Athlete", "Parent"],
+    },
+    package: {
+      type: String,
+      enum: ["Subscription", "Drop-in Rate"],
     },
     active: {
       type: Boolean,
