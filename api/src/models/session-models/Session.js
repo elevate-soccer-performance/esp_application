@@ -42,7 +42,15 @@ const SessionSchema = new Schema(
       type: String,
       enum: ["Heritage", "Long Lake", "David Lorenze"],
     },
-    exercises: [],
+    exercises: [
+      {
+        name: String,
+        id: {
+          type: Schema.Types.ObjectId,
+          ref: "exercises",
+        },
+      },
+    ],
     primary_function_focus: {
       type: Schema.Types.ObjectId,
       ref: "function_metrics",
