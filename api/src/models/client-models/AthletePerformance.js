@@ -15,21 +15,28 @@ const AthletePerformanceSchema = new Schema({
     },
     id: {
       type: Schema.Types.ObjectId,
-      ref: "function_metrics",
+      ref: "performance_metrics",
     },
   },
   value: {
+    // Value for Time, Weight, Distance
     type: Number,
-    min: 0,
-    max: 5,
   },
-  assessment_type: {
+  pass: {
+    // If Pass Fail Test
+    type: Boolean,
+  },
+  time_measurement: {
     type: String,
-    enum: ["Session", "Camp", "End of Month"],
+    enum: ["seconds", "minutes"],
   },
-  created_by: {
-    type: Schema.Types.ObjectId,
-    ref: "users",
+  weight_measurement: {
+    type: String,
+    enum: ["lbs", "kgs"],
+  },
+  distance_measurement: {
+    type: String,
+    enum: ["ft", "yards", "m", "km"],
   },
 });
 

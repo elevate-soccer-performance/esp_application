@@ -12,6 +12,20 @@ const CoachProfileSchema = new Schema({
   registration_date: {
     type: Date,
   },
+  date_registered: {
+    type: Date,
+  },
+  athletes: [
+    {
+      name: {
+        type: String,
+      },
+      id: {
+        type: Schema.Types.ObjectId,
+        ref: "athletes",
+      },
+    },
+  ],
 });
 
 const CoachProfile = mongoose.model("coach_profiles", CoachProfileSchema);
