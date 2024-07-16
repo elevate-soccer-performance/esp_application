@@ -1,7 +1,11 @@
+import LoginUser from "../functions/login_user.js";
+
 // @path -> /api/v1/auth/
 // @type -> Post Request
 // @dec -> Login User
-export const loginUser = (req, res, next) => {};
+export const loginUser = (req, res, next) => {
+  LoginUser(req, res, next);
+};
 
 // @path -> /api/v1/auth/get_me
 // @type -> GET Request

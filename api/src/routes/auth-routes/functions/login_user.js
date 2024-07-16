@@ -42,3 +42,5 @@ const LoginUser = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse(`Failed to Login`, 401, "Login Error"));
   }
 });
+
+export default LoginUser;
