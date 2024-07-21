@@ -23,11 +23,15 @@ router.route("/").post(loginUser);
 // Token -> Check OTP for User
 
 // Public -> Forgot Password
+router.route("/forgot_password").post(forgotPassword);
 
 // Public -> Reset Password
+router.route("/reset_password/:resetToken").put(resetPassword);
 
 // Private -> Get Logged In User
+router.route("/get_me").get(protect, getMe);
 
 // Private -> Change Password
+router.route("/change_password").put(protect, changePassword);
 
 export default router;
