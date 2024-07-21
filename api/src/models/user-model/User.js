@@ -98,7 +98,7 @@ UserSchema.methods.getResetPasswordToken = function () {
 
 // Reverse Populate to get User Profile
 UserSchema.virtual("profile", {
-  ref: (doc) => `${doc.type.toLowerCase()}_profiles`,
+  ref: (doc) => `${doc.role.toLowerCase()}_profiles`,
   localField: "_id",
   foreignField: "user",
   justOne: true,
