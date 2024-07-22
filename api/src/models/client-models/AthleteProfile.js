@@ -12,6 +12,7 @@ const AthleteProfileSchema = new Schema({
   status: {
     type: String,
     enum: ["Active", "In-Active"],
+    default: "Active",
   },
   associated_users: [
     {
@@ -24,6 +25,10 @@ const AthleteProfileSchema = new Schema({
       },
     },
   ],
+  created_by: {
+    type: Schema.Types.ObjectId,
+    ref: "users",
+  },
 });
 
 const AthleteProfile = mongoose.model("athlete_profiles", AthleteProfileSchema);

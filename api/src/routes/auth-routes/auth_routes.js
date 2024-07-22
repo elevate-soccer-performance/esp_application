@@ -14,6 +14,7 @@ import {
 const router = express.Router();
 
 // Import Middleware
+import { protect, targetUser } from "../middleware/security.js";
 
 // Public -> Login user
 router.route("/").post(loginUser);

@@ -1,7 +1,7 @@
 import crypto from "crypto";
 import asyncHandler from "../../../util/async.js";
 import ErrorResponse from "../../../util/error_response.js";
-import User from "../../../models/user-models/User.js";
+import User from "../../../models/user-model/User.js";
 import sendTokenResponse from "./sendTokenResponse.js";
 
 const ResetPassword = asyncHandler(async (req, res, next) => {
