@@ -67,7 +67,30 @@ export const admin = asyncHandler(async (req, res, next) => {
 
 // Target User
 // Require User to Belong to Resource
-export const targetUser = (req, res, next) => {};
+export const targetUser = (req, res, next) => {
+  try {
+    if (
+      JSON.stringify(req.user._id) !== JSON.stringify(req.params.userId) &&
+      req.user.admin === false
+    ) {
+      return next(
+        new ErrorResponse(
+          `You are not Authorized to access this Resource`,
+          401,
+          "Not Authorized"
+        )
+      );
+    }
+  } catch (err) {
+    return next(
+      new ErrorResponse(
+        `There was an Error Authenticating Targeted User`,
+        500,
+        "Security Error"
+      )
+    );
+  }
+};
 
 // User Type
 // Require User to be a User Type
@@ -109,4 +132,38 @@ export const userRoleExclusion = (...userExclusion) => {
 
 // User Association
 // User is Associated with Resources
-export const userAssociation = (...resource) => {};
+export const userAssociation = (...resource) => {
+  return async (req, res, next) => {
+    // If owner of Resource, move on
+    if (
+      JSON.stringify(req.params.userId) === JSON.stringify(req.user._id) ||
+      req.user.admin
+    ) {
+      return next();
+    }
+    if (resource.includes("athlete")) {
+      const athlete = await Athlete.findOne({ user: req.params.userId });
+      let found;
+      for (let person in athlete.associated_users) {
+        if (
+          JSON.stringify(athlete.associated_users[person].id) ===
+            JSON.stringify(req.user._id) ||
+          JSON.stringify(athlete.created_by) === JSON.stringify(req.user._id)
+        ) {
+          found = true;
+          break;
+        }
+      }
+      if (!found && !req.user.admin) {
+        return next(
+          new ErrorResponse(
+            `${req.user.name} is not Authorized to access resource`,
+            401,
+            "Permission Denied"
+          )
+        );
+      }
+      next();
+    } // Add Additional Resources to Check Here
+  };
+};

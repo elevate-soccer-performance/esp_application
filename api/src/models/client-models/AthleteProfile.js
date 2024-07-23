@@ -19,12 +19,19 @@ const AthleteProfileSchema = new Schema({
       name: {
         type: String,
       },
+      type: {
+        type: String,
+      },
       id: {
         type: Schema.Types.ObjectId,
         ref: "users",
       },
     },
   ],
+  gender: {
+    type: String,
+    enum: ["Male", "Female"],
+  },
   created_by: {
     type: Schema.Types.ObjectId,
     ref: "users",

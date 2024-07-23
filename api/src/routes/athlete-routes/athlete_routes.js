@@ -20,6 +20,7 @@ import {
   admin,
   targetUser,
   userRole,
+  userAssociation,
 } from "../middleware/security.js";
 
 // Set Merged Routes
@@ -28,5 +29,20 @@ import {
 router
   .route("/")
   // Protected -> Create Athlete Profile
-  .post(protect, createAthlete);
-// Protected & Associated User -> Get Athlete Profile
+  .post(protect, createAthlete)
+  // Protected & Associated User -> Get Athlete Profiles
+  .get(protect, userAssociation("athlete"), getAthlete);
+
+router
+  .route("/:athleteId")
+  // Target User & Associated User -> Update Athlete Profile
+  .put(protect, userAssociation("athlete"), updateAthlete)
+  // Target User & Associated User -> Delete Athlete Profile
+  .delete(protect, userAssociation("athelte"), deleteAthlete);
+
+router
+  .route("/all")
+  // Protect & Trainer User -> Get All Athletes
+  .get(protect, userRole("Coach"), getAllAthletes);
+
+export default router;

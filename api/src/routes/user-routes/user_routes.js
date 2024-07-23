@@ -11,6 +11,7 @@ import {
 
 // Import Additional Routes
 // I.E. -> api/v1/user/{route}/{route/extension}
+import athlete from "../athlete-routes/athlete_routes.js";
 
 // Initialize Router
 const router = express.Router();
@@ -19,6 +20,7 @@ const router = express.Router();
 import { protect, admin, targetUser } from "../middleware/security.js";
 
 // Set Merged Routes
+router.use("/:userId/athlete", athlete);
 
 // Set Main Routes
 router

@@ -10,6 +10,7 @@ const CreateAthlete = asyncHandler(async (req, res, next) => {
     // Add User to Body
     req.body.user = req.user._id;
     req.body.created_by = req.user._id;
+    req.body.name = req.user.name;
     const athlete = await AthleteProfile.cretae(req.body);
     // Check For Athlete
     if (!athlete) {
