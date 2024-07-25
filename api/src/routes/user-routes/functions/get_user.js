@@ -3,7 +3,7 @@ import ErrorResponse from "../../../util/error_response.js";
 import User from "../../../models/user-model/User.js";
 
 const GetUser = asyncHandler(async (req, res, next) => {
-  const user = await User.findById(req.params.userId).populate("profile");
+  const user = await User.findById(req.params.userId);
 
   if (!user) {
     return next(

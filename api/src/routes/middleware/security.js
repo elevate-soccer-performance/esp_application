@@ -81,6 +81,7 @@ export const targetUser = (req, res, next) => {
         )
       );
     }
+    next();
   } catch (err) {
     return next(
       new ErrorResponse(
@@ -134,27 +135,25 @@ export const userRoleExclusion = (...userExclusion) => {
 // User is Associated with Resources
 export const userAssociation = (...resource) => {
   return async (req, res, next) => {
-    // If owner of Resource, move on
-    if (
-      JSON.stringify(req.params.userId) === JSON.stringify(req.user._id) ||
-      req.user.admin
-    ) {
-      return next();
-    }
+    // Check Athlete Profile for User Access
     if (resource.includes("athlete")) {
-      const athlete = await Athlete.findOne({ user: req.params.userId });
+      const athlete = await Athlete.findOne({ _id: req.params.athleteId });
       let found;
       for (let person in athlete.associated_users) {
         if (
           JSON.stringify(athlete.associated_users[person].id) ===
-            JSON.stringify(req.user._id) ||
-          JSON.stringify(athlete.created_by) === JSON.stringify(req.user._id)
+          JSON.stringify(req.user._id)
         ) {
           found = true;
           break;
         }
       }
-      if (!found && !req.user.admin) {
+      if (
+        !found &&
+        !req.user.admin &&
+        JSON.stringify(athlete.created_by) !== JSON.stringify(req.user._id) &&
+        JSON.stringify(athlete.user) !== JSON.stringify(req.user._id)
+      ) {
         return next(
           new ErrorResponse(
             `${req.user.name} is not Authorized to access resource`,

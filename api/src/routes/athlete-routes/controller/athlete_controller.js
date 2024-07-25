@@ -12,14 +12,14 @@ export const createAthlete = (req, res, next) => {
   CreateAthlete(req, res, next);
 };
 
-// @path -> /api/v1/users/:userId/athlete/
+// @path -> /api/v1/athlete/
 // @type -> GET Request
 // @dec -> Get Athlete Profile
 export const getAthlete = (req, res, next) => {
   GetAthlete(req, res, next);
 };
 
-// @path -> /api/v1/users/:userId/athlete/
+// @path -> /api/v1/athlete/
 // @type -> PUT Request
 // @dec -> Update Athlete Profile
 export const updateAthlete = (req, res, next) => {

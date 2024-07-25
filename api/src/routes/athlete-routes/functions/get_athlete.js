@@ -4,13 +4,13 @@ import AthleteProfile from "../../../models/client-models/AthleteProfile.js";
 
 const GetAthlete = asyncHandler(async (req, res, next) => {
   // Get Athlete
-  const athlete = await AthleteProfile.findOne({ user: req.params.userId });
+  const athlete = await AthleteProfile.findOne({ _id: req.params.athleteId });
   // Add Virtual Models Here
 
   if (!athlete) {
     return next(
       new ErrorResponse(
-        `There were no Athletes with the user ID ${req.params.userId}`,
+        `There were no Athletes with the Athlete ID ${req.params.athleteId}`,
         404,
         "Athlete Not Found"
       )
