@@ -3,7 +3,7 @@ import AthleteProfile from "../../../models/client-models/AthleteProfile.js";
 
 const GetAthletes = asyncHandler(async (req, res, next) => {
   // Get Athletes
-  const athletes = await AthleteProfile.find({});
+  const athletes = await AthleteProfile.find();
 
   res.status(200).json({
     success: true,

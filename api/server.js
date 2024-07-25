@@ -25,6 +25,7 @@ app.use(cookieParser());
 import auth from "./src/routes/auth-routes/auth_routes.js";
 import user from "./src/routes/user-routes/user_routes.js";
 import athlete from "./src/routes/athlete-routes/athlete_routes.js";
+import coach from "./src/routes/coach-routes/coach_routes.js";
 
 // Initialize Port
 const PORT = process.env.PORT || 5000;
@@ -38,6 +39,7 @@ if (process.env.NODE_ENV === "development") {
 app.use("/api/v1/auth", auth);
 app.use("/api/v1/user", user);
 app.use("/api/v1/athlete", athlete);
+app.use("/app/v1/coach", coach);
 
 // Utilize Error Handler
 app.use(errorHandler);

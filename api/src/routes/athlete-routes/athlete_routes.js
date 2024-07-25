@@ -43,6 +43,6 @@ router
   // Target User & Associated User -> Update Athlete Profile
   .put(protect, userAssociation("athlete"), updateAthlete)
   // Target User & Associated User -> Delete Athlete Profile
-  .delete(protect, userAssociation("athelte"), deleteAthlete);
+  .delete(protect, userAssociation("athlete"), deleteAthlete);
 
 export default router;
