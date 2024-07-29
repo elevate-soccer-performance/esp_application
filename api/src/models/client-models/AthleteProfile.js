@@ -32,6 +32,28 @@ const AthleteProfileSchema = new Schema({
     type: String,
     enum: ["Male", "Female"],
   },
+  date_of_birth: {
+    type: Date,
+    required: [true, "Include Athlete Date of Birth"],
+  },
+  current_club_level: {
+    type: String,
+    enum: ["ECRL", "ECNL", "MLS-Next"],
+    required: [true, "Include Athlete Current Club Level"],
+  },
+  primary_position: {
+    type: String,
+    enum: [
+      "Striker & Attacking Mid",
+      "Winger & Outside Back",
+      "Center Back & Holding Mid",
+    ],
+    required: [true, "Include Athlete Primary Position"],
+  },
+  parent_profile: {
+    type: Schema.Types.ObjectId,
+    ref: "parent_profiles",
+  },
   created_by: {
     type: Schema.Types.ObjectId,
     ref: "users",
