@@ -39,7 +39,7 @@ if (process.env.NODE_ENV === "development") {
 app.use("/api/v1/auth", auth);
 app.use("/api/v1/user", user);
 app.use("/api/v1/athlete", athlete);
-app.use("/app/v1/coach", coach);
+app.use("/api/v1/coach", coach);
 
 // Utilize Error Handler
 app.use(errorHandler);

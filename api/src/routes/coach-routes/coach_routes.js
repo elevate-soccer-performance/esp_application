@@ -1,6 +1,13 @@
 import express from "express";
 
 // Import Routes from Controller
+import {
+  createCoach,
+  getCoach,
+  getAllCoaches,
+  deleteCoach,
+  updateCoach,
+} from "./controller/coach_controller.js";
 
 // Import Additional Routes to Mount to Coach Route
 
@@ -21,17 +28,17 @@ import {
 router
   .route("/")
   // User Role (Coach) -> Create Coach Profile
-  .post()
+  .post(protect, userRole("Coach"), createCoach)
   // Protected Route -> Get All Coaches
-  .get();
+  .get(protect, getAllCoaches);
 
 router
   .route("/:coachId")
   // Target User -> Update Coach Profile
-  .put()
+  .put(protect, targetUser, updateCoach)
   // Target User -> Delete Coach Profile
-  .delete()
+  .delete(protect, targetUser, deleteCoach)
   // Protected -> Get Coach Profile
-  .get();
+  .get(protect, getCoach);
 
 export default router;

@@ -6,6 +6,9 @@ const CoachProfileSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "users",
   },
+  name: {
+    type: String,
+  },
   certifications: {
     type: String,
   },
@@ -14,6 +17,10 @@ const CoachProfileSchema = new Schema({
   },
   date_registered: {
     type: Date,
+  },
+  created_by: {
+    type: Schema.Types.ObjectId,
+    ref: "users",
   },
   athletes: [
     {
