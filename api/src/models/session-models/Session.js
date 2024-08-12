@@ -6,22 +6,26 @@ const SessionSchema = new Schema(
     date: {
       type: Date,
     },
+    created_by: {
+      type: Schema.Types.ObjectId,
+      ref: "users",
+    },
     time_start: {
-      type: Date,
+      type: String,
     },
     time_end: {
-      type: Date,
+      type: String,
     },
     coach: {
       type: Schema.Types.ObjectId,
-      ref: "users",
+      ref: "coaches",
     },
     scheduled_athletes: [
       {
         name: {
           type: String,
         },
-        user: {
+        athlete: {
           type: Schema.Types.ObjectId,
           ref: "athletes",
         },
@@ -32,7 +36,7 @@ const SessionSchema = new Schema(
         name: {
           type: String,
         },
-        user: {
+        athlete: {
           type: Schema.Types.ObjectId,
           ref: "athletes",
         },

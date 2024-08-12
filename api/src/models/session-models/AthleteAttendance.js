@@ -12,7 +12,7 @@ const AthleteAttendanceSchema = new Schema({
   },
   status: {
     type: String,
-    enum: ["Present", "Absent", "Excused", "Canceled"],
+    enum: ["Scheduled", "Present", "Absent", "Excused", "Canceled"],
   },
 });
 
