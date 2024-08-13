@@ -3,8 +3,7 @@ const Schema = mongoose.Schema;
 
 const ParentProfileSchema = new Schema({
   user: {
-    type: Schema.Types,
-    Object,
+    type: Schema.Types.ObjectId,
     ref: "users",
   },
   name: {

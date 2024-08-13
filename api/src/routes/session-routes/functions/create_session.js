@@ -9,11 +9,6 @@ const CreateSession = asyncHandler(async (req, res, next) => {
 
   const session = await Session.create(req.body);
 
-  //   const updated_session = await Session.findOneAndUpdate(
-  //     { _id: session._id },
-  //     { $push: { scheduled_athletes: { $each: req.body.scheduled_athletes } } }
-  //   );
-
   if (!session) {
     return next(
       new ErrorResponse(

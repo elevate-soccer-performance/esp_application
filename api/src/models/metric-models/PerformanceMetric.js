@@ -30,6 +30,19 @@ const PerformanceMetricSchema = new Schema({
     type: String,
     enum: ["Time", "Distance", "Weight", "Pass/Fail", "Other"],
   },
+  time_value: {
+    type: Number,
+  },
+  distance_value: {
+    type: Number,
+  },
+  weight_value: {
+    type: Number,
+  },
+  pass_fail_value: {
+    type: String,
+    enum: ["Pass", "Fail"],
+  },
 });
 
 const PerformanceMetric = mongoose.model(

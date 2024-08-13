@@ -29,10 +29,11 @@ const CreateAthlete = asyncHandler(async (req, res, next) => {
     });
   } else if (req.user.role === "Parent") {
     // Parent User
-    // Add User to Associated Users
+    // Add User ID to Associated Users
     req.body.associated_users = [
       {
         name: req.user.name,
+        type: "Parent",
         id: req.user._id,
       },
     ];
