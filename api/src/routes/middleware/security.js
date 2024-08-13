@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import User from "../../models/user-model/User.js";
 import Athlete from "../../models/client-models/AthleteProfile.js";
 import Coach from "../../models/client-models/CoachProfile.js";
+import Session from "../../models/session-models/Session.js";
 
 // Protect Routes
 // Require User to have Bearer Token
@@ -164,5 +165,30 @@ export const userAssociation = (...resource) => {
       }
       next();
     } // Add Additional Resources to Check Here
+  };
+};
+
+// Created By
+// Resource was Created by the User
+export const createdBy = (...resource) => {
+  return async (req, res, next) => {
+    // Check Session Resource
+    if (resource.includes("session")) {
+      const session = await Session.findOne({ _id: req.params.sessionId });
+
+      if (
+        JSON.stringify(session.created_by) !== JSON.stringify(req.user._id) &&
+        !req.user.admin
+      ) {
+        return next(
+          new ErrorResponse(
+            `${req.user.name} is not Authorized to access this resource`,
+            401,
+            "Permissino Denied"
+          )
+        );
+      }
+      next();
+    } // Add Additional Resource to Check Here
   };
 };

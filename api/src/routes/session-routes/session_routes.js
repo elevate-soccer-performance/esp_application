@@ -1,7 +1,12 @@
 import express from "express";
 
 // Import Routes from Controller
-import { createSession } from "./controller/session_controller.js";
+import {
+  createSession,
+  updateSession,
+  updateAthleteAttendance,
+  getSession,
+} from "./controller/session_controller.js";
 
 // Import Additional Routes to Mount to Session Route
 
@@ -14,6 +19,7 @@ import {
   admin,
   targetUser,
   userRole,
+  createdBy,
 } from "../middleware/security.js";
 
 // Set Merged Routes
@@ -29,10 +35,15 @@ router
 router
   .route("/:sessionId")
   // Created By -> Update Session
-  .put()
+  .put(protect, createdBy("session"), updateSession)
   // Target User(s) -> Get Session
-  .get()
+  .get(protect, getSession)
   // Created By -> Delete Session
   .delete();
+
+router
+  .route("/:sessionId/athlete/attendance")
+  // Created By -> Update Attendance for Athletes
+  .put(protect, createdBy("session"), updateAthleteAttendance);
 
 export default router;
