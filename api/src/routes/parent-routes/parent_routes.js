@@ -1,7 +1,12 @@
 import express from "express";
 
 // Import Routes from Controller
-import { createParent, getParent } from "./controller/parent_controller.js";
+import {
+  createParent,
+  getParent,
+  getParents,
+  updateParent,
+} from "./controller/parent_controller.js";
 
 // Import Additional Routes to Mount to Session Route
 
@@ -9,7 +14,7 @@ import { createParent, getParent } from "./controller/parent_controller.js";
 const router = express.Router();
 
 // Import Middleware
-import { protect, userRole } from "../middleware/security.js";
+import { protect, targetUser, userRole } from "../middleware/security.js";
 
 // Set Merged Routes
 
@@ -19,13 +24,13 @@ router
   // User Role (Parent) -> Create Parent Profile
   .post(protect, userRole("Parent"), createParent)
   // Admin -> Get All Parents
-  .get();
+  .get(protect, getParents);
 
 router
   .route("/:parentId")
   // Protect -> Get Parent Profile
-  .get()
+  .get(protect, getParent)
   // Target User -> Update Parent Profile
-  .put();
+  .put(protect, targetUser, updateParent);
 
 export default router;
