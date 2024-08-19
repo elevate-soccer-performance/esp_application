@@ -28,6 +28,7 @@ import athlete from "./src/routes/athlete-routes/athlete_routes.js";
 import coach from "./src/routes/coach-routes/coach_routes.js";
 import session from "./src/routes/session-routes/session_routes.js";
 import parent from "./src/routes/parent-routes/parent_routes.js";
+import metric from "./src/routes/metric-routes/metric_routes.js";
 
 // Initialize Port
 const PORT = process.env.PORT || 5000;
@@ -44,6 +45,7 @@ app.use("/api/v1/athlete", athlete);
 app.use("/api/v1/coach", coach);
 app.use("/api/v1/session", session);
 app.use("/api/v1/parent", parent);
+app.use("/api/v1/metric", metric);
 
 // Utilize Error Handler
 app.use(errorHandler);

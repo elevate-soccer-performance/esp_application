@@ -21,11 +21,6 @@ const FunctionMetricSchema = new Schema({
       "Center Back & Holding Mid",
     ],
   },
-  value: {
-    type: Number,
-    max: 5,
-    min: 1,
-  },
 });
 
 const FunctionMetric = mongoose.model("function_metrics", FunctionMetricSchema);

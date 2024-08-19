@@ -5,9 +5,8 @@ import CoachProfile from "../../../models/client-models/CoachProfile.js";
 const CreateCoach = asyncHandler(async (req, res, next) => {
   // Add User to Body
   req.body.created_by = req.user._id;
-  if (req.user.role === "Coach") {
-    req.body.user = req.user._id;
-  }
+  req.body.user = req.user.role === "Coach" ? req.user._id : "";
+  console.log("USER: ", req.body.user);
   // Create Coach Profile
   const coach = await CoachProfile.create(req.body);
   //   Check for Coach

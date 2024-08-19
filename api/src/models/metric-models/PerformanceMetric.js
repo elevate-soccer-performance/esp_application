@@ -6,7 +6,7 @@ const PerformanceMetricSchema = new Schema({
     type: String,
   },
   description: {
-    type: string,
+    type: String,
   },
   metric_field: {
     type: String,
@@ -30,18 +30,21 @@ const PerformanceMetricSchema = new Schema({
     type: String,
     enum: ["Time", "Distance", "Weight", "Pass/Fail", "Other"],
   },
-  time_value: {
-    type: Number,
-  },
-  distance_value: {
-    type: Number,
-  },
-  weight_value: {
-    type: Number,
-  },
-  pass_fail_value: {
+  measurement_units: {
     type: String,
-    enum: ["Pass", "Fail"],
+    enum: [
+      "Seconds",
+      "Minutes",
+      "Kg",
+      "lbs",
+      "Pass/Fail",
+      "Yard",
+      "Inche",
+      "Meter",
+      "CM",
+      "Mile",
+      "KM",
+    ],
   },
 });
 
