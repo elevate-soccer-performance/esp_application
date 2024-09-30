@@ -1,13 +1,16 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
-const FMSSchema = new Schema({
-  movement_metric: {
-    type: Schema.Types.ObjectId,
-    ref: "movement_metrics",
-  },
+const FTSSchema = new Schema({
   date: {
     type: Date,
+  },
+  skill_metric: {
+    type: Schema.Types.ObjectId,
+    ref: "skill_metrics",
+  },
+  value: {
+    type: Number,
   },
   athlete: {
     type: Schema.Types.ObjectId,
@@ -17,14 +20,11 @@ const FMSSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "coach_profiles",
   },
-  value: {
-    type: Number,
-  },
   note: {
     type: String,
   },
 });
 
-const FMS = mongoose.model("fms", FMSSchema);
+const FTS = mongoose.model("fts", FTSSchema);
 
-export default FMS;
+export default FTS;
