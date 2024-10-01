@@ -44,9 +44,9 @@ const AthleteProfileSchema = new Schema({
   primary_position: {
     type: String,
     enum: [
-      "Striker & Attacking Mid",
-      "Winger & Outside Back",
-      "Center Back & Holding Mid",
+      "Attacking Focused Positions",
+      "Defensive Focused Positions",
+      "Width Focused Positions",
     ],
     required: [true, "Include Athlete Primary Position"],
   },

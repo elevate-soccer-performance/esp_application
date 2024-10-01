@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
-// This Model Creates the Metrics to be Tracked for [General Performance]
+// This Model Creates the Metrics to be Tracked for [General Performance Assessment (GPA)]
 const PerformanceMetricSchema = new Schema({
   name: {
     type: String,

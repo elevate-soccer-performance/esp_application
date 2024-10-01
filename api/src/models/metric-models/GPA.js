@@ -1,17 +1,14 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
-// This Model is the storage of Athlete Scores from the metrics created in the Performance Metric Models
-const GeneralPerformanceMetricSchema = new Schema({
+// This Model creates the Athelte's evaluation for a specific performance metric that was created in the Performance Metric Schema
+const GPASchema = new Schema({
   date: {
     type: Date,
   },
   performance_metric: {
     type: Schema.Types.ObjectId,
     ref: "performance_metrics",
-  },
-  value: {
-    type: Number,
   },
   athlete: {
     type: Schema.Types.ObjectId,
@@ -21,8 +18,18 @@ const GeneralPerformanceMetricSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "coach_profiles",
   },
+  value: {
+    type: Number,
+  },
+  note: {
+    type: String,
+  },
   location: {
     type: String,
+  },
+  gender: {
+    type: String,
+    ennum: ["Male", "Female"],
   },
   age_at_test: {
     type: Number,
@@ -30,9 +37,9 @@ const GeneralPerformanceMetricSchema = new Schema({
   position_group_at_test: {
     type: String,
     enum: [
-      "Striker & Attacking Mid",
-      "Winger & Outside Back",
-      "Center Back & Holding Mid",
+      "Attacking Focused Positions",
+      "Defensive Focused Positions",
+      "Width Focused Positions",
     ],
   },
   athlete_gender: {
@@ -41,9 +48,6 @@ const GeneralPerformanceMetricSchema = new Schema({
   },
 });
 
-const GeneralPerformanceMetric = mongoose.model(
-  "general_performance_metrics",
-  GeneralPerformanceMetricSchema
-);
+const GPA = mongoose.model("gpas", GPASchema);
 
-export default GeneralPerformanceMetric;
+export default GPA;
