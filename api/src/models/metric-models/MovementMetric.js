@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
+// This is the model schema for the Movement Metric which will serve as the Functional Movement Assessments, the athlete results and evaluations are created in the FMS Model Schema
 const MovementMetricSchema = new Schema({
   name: {
     type: String,

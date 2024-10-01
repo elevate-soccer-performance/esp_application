@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
+// Athlete Screening results are stored with this model, the metrics being tracked are created in the Movement Metric Model
 const FMSSchema = new Schema({
   movement_metric: {
     type: Schema.Types.ObjectId,

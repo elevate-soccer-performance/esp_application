@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
+// Athlete evaluation results, the skill being evaluated is created in the Skill Metric Model
 const FTSSchema = new Schema({
   date: {
     type: Date,

@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
+// Athlete Assessment Results for the Position Metric. The Position Metric being evaluated is created in the Position Function Metric Model
 const PFASchema = new Schema({
   date: {
     type: Date,
