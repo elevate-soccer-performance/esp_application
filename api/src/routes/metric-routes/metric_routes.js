@@ -45,7 +45,7 @@ router
   .route("/movement/:movementId")
   // User Role (Coach) -> Create Movement Evaluation (FMS) For an Athlete
   .post(protect, userRole("Coach"), createMovementEvaluation)
-  // Protected -> Get Movement Metric
+  // Protected -> Get Movement Metric (Not Athlete Evaluation)
   .get(protect, getMovementMetric)
   // Admin Only -> Update Movement Metric (Not Athlete Evaluation)
   .put(protect, admin, updateMovementMetric)
@@ -71,5 +71,29 @@ router
   .post(protect, admin, createSkillMetric)
   // Protected -> Get All Skill Metrics (Not Athlete Evaluations)
   .get(protect, getSkillMetrics);
+
+router
+  .route("/skill/:skillId")
+  // User Role (Coach) -> Create Skill Evaluation (FTS) For an Athlete
+  .post()
+  // Protected -> Get Skill Metric (Not Athlete Evaluation)
+  .get()
+  // Admin Only -> Update Skill Metric (Not Athlete Evaluation)
+  .put()
+  // Admin Only -> Delete Skill Metric
+  .delete();
+
+router
+  .route("/skill/fts/:userId/:evaluationId")
+  // Target Coach -> Update Skill Evaluation for an Athlete
+  .put()
+  // Target User -> Get Skill Evaluation for an Athlete
+  .get()
+  // Target Coach -> Delete Skill Evaluation for an Athlete
+  .delete();
+
+// End Skill Metric (FTS Evaluations) & Routes
+// --------------------------------------------------------
+// Start Performance Metric (GPA Evaluations) & Routes
 
 export default router;

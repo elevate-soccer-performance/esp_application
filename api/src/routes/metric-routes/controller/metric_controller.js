@@ -61,7 +61,3 @@ export const createSkillMetric = (req, res, next) => {};
 // @type -> GET Request
 // @dec -> Get All Skill Metrics (Not Athlete Evaluations or Results)
 export const getSkillMetrics = (req, res, next) => {};
-
-// @path -> /api/v1/metric/performance
-// @type -> POST Request
-// @dec -> Create Performance Metric
