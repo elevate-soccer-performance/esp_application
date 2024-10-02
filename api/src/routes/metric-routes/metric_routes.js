@@ -2,9 +2,17 @@ import express from "express";
 
 // Import Routes from Controller
 import {
-  createFunctionMetric,
-  createResultFunctionMetric,
-  createPerformanceMetric,
+  createMovementMetric,
+  getMovementMetrics,
+  getMovementEvaluation,
+  getMovementMetric,
+  createMovementEvaluation,
+  updateMovementMetric,
+  updateMovementEvaluation,
+  deleteMovementMetric,
+  deleteMovementEvaluation,
+  createSkillMetric,
+  getSkillMetrics,
 } from "./controller/metric_controller.js";
 
 // Import Additoinal Routes to Mount to Metric Routes
@@ -23,19 +31,45 @@ import {
 // Set Merged Routes
 
 // Set Metric Routes
+
+// ----------------------------------------------
+// Start Movement Metric (FMS Evaluations) & Routes
 router
-  .route("/function")
-  // Admin Only -> Create a Function Metric
-  .post(protect, admin, createFunctionMetric);
+  .route("/movement")
+  // Admin Only -> Create Movement Metric (Not Athlete Evaluation)
+  .post(protect, admin, createMovementMetric)
+  // Protected -> Get All Movement Metrics (Not Athlete Evaluations)
+  .get(protect, getMovementMetrics);
 
 router
-  .route("/function/:functionId")
-  // User Role (Coach) -> Create Metric Result
-  .post(protect, userRole("Coach"), createResultFunctionMetric);
+  .route("/movement/:movementId")
+  // User Role (Coach) -> Create Movement Evaluation (FMS) For an Athlete
+  .post(protect, userRole("Coach"), createMovementEvaluation)
+  // Protected -> Get Movement Metric
+  .get(protect, getMovementMetric)
+  // Admin Only -> Update Movement Metric (Not Athlete Evaluation)
+  .put(protect, admin, updateMovementMetric)
+  // Admin Only -> Delete Movement Metric
+  .delete(protect, admin, deleteMovementMetric);
 
 router
-  .route("/performance")
-  // Admin Only -> Create a Performance Metric
-  .post(protect, admin, createPerformanceMetric);
+  .route("/movement/fms/:userId/:evaluationId")
+  // Target Coach -> Update Movement Evaluation for an Athlete
+  .put(protect, userRole("Coach"), targetUser, updateMovementEvaluation)
+  // Target User -> Get Movement Evaluation for an Athlete
+  .get(protect, targetUser, getMovementEvaluation)
+  // Target Coach -> Delete Movement Evaluation for an Athlete
+  .delete(protect, userRole("Coach"), targetUser, deleteMovementEvaluation);
+
+// End Movement Metric (FMS Evaluations) & Routes
+// --------------------------------------------------------
+// Start Skill Metric (FTS Evaluations) & Routes
+
+router
+  .route("/skill")
+  // Admin Only -> Create Skill Metric (Not Athlete Evaluation)
+  .post(protect, admin, createSkillMetric)
+  // Protected -> Get All Skill Metrics (Not Athlete Evaluations)
+  .get(protect, getSkillMetrics);
 
 export default router;
