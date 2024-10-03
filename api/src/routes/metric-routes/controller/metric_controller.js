@@ -1,4 +1,6 @@
 // Import Route Functions
+import MasterCreateMetric from "../functions/master_create_metric.js";
+import MasterCreateEvaluation from "../functions/master_create_evaluation.js";
 
 // --------------------------------------------------
 // Start Movement Metric Management
@@ -6,12 +8,16 @@
 // @path -> /api/v1/metric/movement
 // @type -> POST Request
 // @dec -> Create Movement Metric to be Tracked (NOT Athlete Evaluation)
-export const createMovementMetric = (req, res, next) => {};
+export const createMovementMetric = (req, res, next) => {
+  MasterCreateMetric(req, res, next);
+};
 
 // @path -> /api/v1/metric/movement/:movementId
 // @type -> POST Request
 // @dec -> Create Movement Evaluation for an Athlete (This is the scored evaluation of that metric for an athlete)
-export const createMovementEvaluation = (req, res, next) => {};
+export const createMovementEvaluation = (req, res, next) => {
+  MasterCreateEvaluation(req, res, next);
+};
 
 // @path -> /api/v1/metric/movement/:movementId
 // @type -> GET Request
@@ -55,7 +61,9 @@ export const deleteMovementEvaluation = (req, res, next) => {};
 // @path -> /api/v1/metric/skill/
 // @type -> POST Request
 // @dec -> Create Skill Metric (Not Athlete Evaluation)
-export const createSkillMetric = (req, res, next) => {};
+export const createSkillMetric = (req, res, next) => {
+  MasterCreateMetric(req, res, next);
+};
 
 // @path -> /api/v1/metric/skill/
 // @type -> GET Request
@@ -65,7 +73,9 @@ export const getSkillMetrics = (req, res, next) => {};
 // @path -> /api/v1/metric/skill/:skillId
 // @type -> POST Request
 // @dec -> Create Skill Evaluation (FTS) for an Athelte
-export const createSkillEvaluation = (req, res, next) => {};
+export const createSkillEvaluation = (req, res, next) => {
+  MasterCreateEvaluation(req, res, next);
+};
 
 // @path -> /api/v1/metric/skill/:skillId
 // @type -> GET Request
@@ -104,7 +114,9 @@ export const deleteSkillEvaluation = (req, res, next) => {};
 // @path -> /api/v1/metric/performance/
 // @type -> POST Request
 // @dec -> Create performance Metric (Not Athlete Evaluation)
-export const createPerformanceMetric = (req, res, next) => {};
+export const createPerformanceMetric = (req, res, next) => {
+  MasterCreateMetric(req, res, next);
+};
 
 // @path -> /api/v1/metric/performance/
 // @type -> GET Request
@@ -114,7 +126,9 @@ export const getPerformanceMetrics = (req, res, next) => {};
 // @path -> /api/v1/metric/performance/:performanceId
 // @type -> POST Request
 // @dec -> Create Performance Evaluation (GPA) for an Athelte
-export const createPerformanceEvaluation = (req, res, next) => {};
+export const createPerformanceEvaluation = (req, res, next) => {
+  MasterCreateEvaluation(req, res, next);
+};
 
 // @path -> /api/v1/metric/performance/:performanceId
 // @type -> GET Request
@@ -153,7 +167,9 @@ export const deletePerformanceEvaluation = (req, res, next) => {};
 // @path -> /api/v1/metric/position/
 // @type -> POST Request
 // @dec -> Create Position Metric (Not Athlete Evaluation)
-export const createPositionMetric = (req, res, next) => {};
+export const createPositionMetric = (req, res, next) => {
+  MasterCreateMetric(req, res, next);
+};
 
 // @path -> /api/v1/metric/position/
 // @type -> GET Request
@@ -163,7 +179,9 @@ export const getPositionMetrics = (req, res, next) => {};
 // @path -> /api/v1/metric/position/:positionId
 // @type -> POST Request
 // @dec -> Create Position Evaluation (PFA) for an Athelte
-export const createPositionEvaluation = (req, res, next) => {};
+export const createPositionEvaluation = (req, res, next) => {
+  MasterCreateEvaluation(req, res, next);
+};
 
 // @path -> /api/v1/metric/position/:positionId
 // @type -> GET Request
