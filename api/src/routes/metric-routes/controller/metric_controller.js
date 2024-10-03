@@ -149,3 +149,48 @@ export const deletePerformanceEvaluation = (req, res, next) => {};
 // End Performance Metric Management
 // --------------------------------------------------
 // Start Position Metric Management
+
+// @path -> /api/v1/metric/position/
+// @type -> POST Request
+// @dec -> Create Position Metric (Not Athlete Evaluation)
+export const createPositionMetric = (req, res, next) => {};
+
+// @path -> /api/v1/metric/position/
+// @type -> GET Request
+// @dec -> Get All Position Metrics (Not Athlete Evaluations or Results)
+export const getPositionMetrics = (req, res, next) => {};
+
+// @path -> /api/v1/metric/position/:positionId
+// @type -> POST Request
+// @dec -> Create Position Evaluation (PFA) for an Athelte
+export const createPositionEvaluation = (req, res, next) => {};
+
+// @path -> /api/v1/metric/position/:positionId
+// @type -> GET Request
+// @dec -> Get Position Metric (Not Athlete Evaluation)
+export const getPositionMetric = (req, res, next) => {};
+
+// @path -> /api/v1/metric/position/:positionId
+// @type -> PUT Request
+// @dec -> Update Position Metric (Not Athlete Evaluation)
+export const updatePositionMetric = (req, res, next) => {};
+
+// @path -> /api/v1/metric/position/
+// @type -> DELETE Request
+// @dec -> Delete Position Metric (Not Athlete Evaluation)
+export const deletePositionMetric = (req, res, next) => {};
+
+// @path -> /api/v1/metric/position/pfa/:userId/:evaluationId
+// @type -> PUT Request
+// @dec -> Update Position Evaluation for an Athlete
+export const updatePositionEvaluation = (req, res, next) => {};
+
+// @path -> /api/v1/metric/position/pfa/:userId/:evaluationId
+// @type -> GET Request
+// @dec -> Get Position Evaluation for an Athlete
+export const getPositionEvaluation = (req, res, next) => {};
+
+// @path -> /api/v1/metric/position/pfa/:userId/:evaluationId
+// @type -> DELETE Request
+// @dec -> Delete Position Evaluation for an Athlete
+export const deletePositionEvaluation = (req, res, next) => {};

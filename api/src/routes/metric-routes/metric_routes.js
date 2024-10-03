@@ -29,6 +29,15 @@ import {
   updatePerformanceEvaluation,
   getPerformanceEvaluation,
   deletePerformanceEvaluation,
+  createPositionMetric,
+  getPositionMetrics,
+  createPositionEvaluation,
+  getPositionMetric,
+  updatePositionMetric,
+  deletePositionMetric,
+  updatePositionEvaluation,
+  getPositionEvaluation,
+  deletePositionEvaluation,
 } from "./controller/metric_controller.js";
 
 // Import Additoinal Routes to Mount to Metric Routes
@@ -138,5 +147,36 @@ router
   .get(protect, targetUser, getPerformanceEvaluation)
   // Target Coach -> Delete Performance Evaluation for an Athlete
   .delete(protect, userRole("Coach"), targetUser, deletePerformanceEvaluation);
+
+// End Performance Metric (GPA Evaluations) & Routes
+// --------------------------------------------------------
+// Start Position Metric (PFA Evaluations) & Routes
+
+router
+  .route("/position")
+  // Admin Only -> Create Position Metric (Not Athlete Evaluation)
+  .post(protect, admin, createPositionMetric)
+  // Protected -> Get All Position Metrics (Not Athlete Evaluations)
+  .get(protect, getPositionMetrics);
+
+router
+  .route("/position/:positionId")
+  // User Role (Coach) -> Create Position Evaluation (PFA) For an Athlete
+  .post(protect, userRole("Coach"), createPositionEvaluation)
+  // Protected -> Get Position Metric (Not Athlete Evaluation)
+  .get(protect, getPositionMetric)
+  // Admin Only -> Update Position Metric (Not Athlete Evaluation)
+  .put(protect, admin, updatePositionMetric)
+  // Admin Only -> Delete Position Metric
+  .delete(protect, admin, deletePositionMetric);
+
+router
+  .route("/position/pfa/:userId/:evaluationId")
+  // Target Coach -> Update Position Evaluation for an Athlete
+  .put(protect, userRole("Coach"), targetUser, updatePositionEvaluation)
+  // Target User -> Get Position Evaluation for an Athlete
+  .get(protect, targetUser, getPositionEvaluation)
+  // Target Coach -> Delete Position Evaluation for an Athlete
+  .delete(protect, userRole("Coach"), targetUser, deletePositionEvaluation);
 
 export default router;
