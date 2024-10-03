@@ -61,3 +61,91 @@ export const createSkillMetric = (req, res, next) => {};
 // @type -> GET Request
 // @dec -> Get All Skill Metrics (Not Athlete Evaluations or Results)
 export const getSkillMetrics = (req, res, next) => {};
+
+// @path -> /api/v1/metric/skill/:skillId
+// @type -> POST Request
+// @dec -> Create Skill Evaluation (FTS) for an Athelte
+export const createSkillEvaluation = (req, res, next) => {};
+
+// @path -> /api/v1/metric/skill/:skillId
+// @type -> GET Request
+// @dec -> Get Skill Metric (Not Athlete Evaluation)
+export const getSkillMetric = (req, res, next) => {};
+
+// @path -> /api/v1/metric/skill/:skillId
+// @type -> PUT Request
+// @dec -> Update Skill Metric (Not Athlete Evaluation)
+export const updateSkillMetric = (req, res, next) => {};
+
+// @path -> /api/v1/metric/skill/
+// @type -> DELETE Request
+// @dec -> Delete Skill Metric (Not Athlete Evaluation)
+export const deleteSkillMetric = (req, res, next) => {};
+
+// @path -> /api/v1/metric/skill/fts/:userId/:evaluationId
+// @type -> PUT Request
+// @dec -> Update Skill Evaluation for an Athlete
+export const updateSkillEvaluation = (req, res, next) => {};
+
+// @path -> /api/v1/metric/skill/fts/:userId/:evaluationId
+// @type -> GET Request
+// @dec -> Get Skill Evaluation for an Athlete
+export const getSkillEvaluation = (req, res, next) => {};
+
+// @path -> /api/v1/metric/skill/fts/:userId/:evaluationId
+// @type -> DELETE Request
+// @dec -> Delete Skill Evaluation for an Athlete
+export const deleteSkillEvaluation = (req, res, next) => {};
+
+// End Skill Metric Management
+// --------------------------------------------------
+// Start Performance Metric Management
+
+// @path -> /api/v1/metric/performance/
+// @type -> POST Request
+// @dec -> Create performance Metric (Not Athlete Evaluation)
+export const createPerformanceMetric = (req, res, next) => {};
+
+// @path -> /api/v1/metric/performance/
+// @type -> GET Request
+// @dec -> Get All Performance Metrics (Not Athlete Evaluations or Results)
+export const getPerformanceMetrics = (req, res, next) => {};
+
+// @path -> /api/v1/metric/performance/:performanceId
+// @type -> POST Request
+// @dec -> Create Performance Evaluation (GPA) for an Athelte
+export const createPerformanceEvaluation = (req, res, next) => {};
+
+// @path -> /api/v1/metric/performance/:performanceId
+// @type -> GET Request
+// @dec -> Get Performance Metric (Not Athlete Evaluation)
+export const getPerformanceMetric = (req, res, next) => {};
+
+// @path -> /api/v1/metric/performance/:performanceId
+// @type -> PUT Request
+// @dec -> Update Performance Metric (Not Athlete Evaluation)
+export const updatePerformanceMetric = (req, res, next) => {};
+
+// @path -> /api/v1/metric/performance/
+// @type -> DELETE Request
+// @dec -> Delete Performance Metric (Not Athlete Evaluation)
+export const deletePerformanceMetric = (req, res, next) => {};
+
+// @path -> /api/v1/metric/performance/gpa/:userId/:evaluationId
+// @type -> PUT Request
+// @dec -> Update Performance Evaluation for an Athlete
+export const updatePerformanceEvaluation = (req, res, next) => {};
+
+// @path -> /api/v1/metric/performance/gpa/:userId/:evaluationId
+// @type -> GET Request
+// @dec -> Get Performance Evaluation for an Athlete
+export const getPerformanceEvaluation = (req, res, next) => {};
+
+// @path -> /api/v1/metric/performance/gpa/:userId/:evaluationId
+// @type -> DELETE Request
+// @dec -> Delete Performance Evaluation for an Athlete
+export const deletePerformanceEvaluation = (req, res, next) => {};
+
+// End Performance Metric Management
+// --------------------------------------------------
+// Start Position Metric Management

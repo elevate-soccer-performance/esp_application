@@ -13,6 +13,22 @@ import {
   deleteMovementEvaluation,
   createSkillMetric,
   getSkillMetrics,
+  createSkillEvaluation,
+  getSkillMetric,
+  updateSkillMetric,
+  deleteSkillMetric,
+  updateSkillEvaluation,
+  getSkillEvaluation,
+  deleteSkillEvaluation,
+  createPerformanceMetric,
+  getPerformanceMetrics,
+  createPerformanceEvaluation,
+  getPerformanceMetric,
+  updatePerformanceMetric,
+  deletePerformanceMetric,
+  updatePerformanceEvaluation,
+  getPerformanceEvaluation,
+  deletePerformanceEvaluation,
 } from "./controller/metric_controller.js";
 
 // Import Additoinal Routes to Mount to Metric Routes
@@ -75,25 +91,52 @@ router
 router
   .route("/skill/:skillId")
   // User Role (Coach) -> Create Skill Evaluation (FTS) For an Athlete
-  .post()
+  .post(protect, userRole("Coach"), createSkillEvaluation)
   // Protected -> Get Skill Metric (Not Athlete Evaluation)
-  .get()
+  .get(protect, getSkillMetric)
   // Admin Only -> Update Skill Metric (Not Athlete Evaluation)
-  .put()
+  .put(protect, admin, updateSkillMetric)
   // Admin Only -> Delete Skill Metric
-  .delete();
+  .delete(protect, admin, deleteSkillMetric);
 
 router
   .route("/skill/fts/:userId/:evaluationId")
   // Target Coach -> Update Skill Evaluation for an Athlete
-  .put()
+  .put(protect, userRole("Coach"), targetUser, updateSkillEvaluation)
   // Target User -> Get Skill Evaluation for an Athlete
-  .get()
+  .get(protect, targetUser, getSkillEvaluation)
   // Target Coach -> Delete Skill Evaluation for an Athlete
-  .delete();
+  .delete(protect, userRole("Coach"), targetUser, deleteSkillEvaluation);
 
 // End Skill Metric (FTS Evaluations) & Routes
 // --------------------------------------------------------
 // Start Performance Metric (GPA Evaluations) & Routes
+
+router
+  .route("/performance")
+  // Admin Only -> Create Performance Metric (Not Athlete Evaluation)
+  .post(protect, admin, createPerformanceMetric)
+  // Protected -> Get All Performance Metrics (Not Athlete Evaluations)
+  .get(protect, getPerformanceMetrics);
+
+router
+  .route("/performance/:performanceId")
+  // User Role (Coach) -> Create Performance Evaluation (GPA) For an Athlete
+  .post(protect, userRole("Coach"), createPerformanceEvaluation)
+  // Protected -> Get Performance Metric (Not Athlete Evaluation)
+  .get(protect, getPerformanceMetric)
+  // Admin Only -> Update Performance Metric (Not Athlete Evaluation)
+  .put(protect, admin, updatePerformanceMetric)
+  // Admin Only -> Delete Performance Metric
+  .delete(protect, admin, deletePerformanceMetric);
+
+router
+  .route("/performance/gpa/:userId/:evaluationId")
+  // Target Coach -> Update Performance Evaluation for an Athlete
+  .put(protect, userRole("Coach"), targetUser, updatePerformanceEvaluation)
+  // Target User -> Get Performance Evaluation for an Athlete
+  .get(protect, targetUser, getPerformanceEvaluation)
+  // Target Coach -> Delete Performance Evaluation for an Athlete
+  .delete(protect, userRole("Coach"), targetUser, deletePerformanceEvaluation);
 
 export default router;
