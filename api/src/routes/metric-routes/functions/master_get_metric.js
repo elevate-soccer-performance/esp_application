@@ -7,13 +7,13 @@ import SkillMetric from "../../../models/metric-models/SkillMetric.js";
 
 const MasterGetMetric = asyncHandler(async (req, res, next) => {
   const field = req.url.includes("movement")
-    ? await MovementMetric.findOne({ _id: req.params.movementId })
+    ? await MovementMetric.findById({ _id: req.params.movementId })
     : req.url.includes("skill")
-    ? SkillMetric.findOne({ _id: req.params.skillId })
+    ? SkillMetric.findById({ _id: req.params.skillId })
     : req.url.includes("performance")
-    ? PerformanceMetric.findOne({ _id: req.params.performanceId })
+    ? PerformanceMetric.findById({ _id: req.params.performanceId })
     : req.url.includes("position")
-    ? PositionFunctionMetric.findOne({ _id: req.params.positionId })
+    ? PositionFunctionMetric.findById({ _id: req.params.positionId })
     : null;
 
   if (!field || field === null) {
